@@ -2,9 +2,9 @@
   <div class="flex items-center breadcrumb">
     <router-link to="/">Users </router-link>
     <span class="ml-2"> > </span>
-    <router-link to="/about" class="ml-2">Usuários</router-link>
+    <router-link to="/user/1" class="ml-2">Usuários</router-link>
     <span class="ml-2"> > </span>
-    <router-link to="/about" class="ml-2">Detalhes</router-link>
+    <router-link to="/user/2" class="ml-2">Detalhes</router-link>
   </div>
 </template>
 

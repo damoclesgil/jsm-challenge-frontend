@@ -3,7 +3,7 @@
     <div class="checkbox-form">
       <div class="answers">
         <label v-for="(option, i) of options" :key="i" class="item">
-          <span :for="option">{{ option }}</span>
+          <span class="font-sm" :for="option">{{ option }}</span>
           <input
             :id="option"
             v-model="checked"

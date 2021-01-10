@@ -1,4 +1,4 @@
-# jsm-challenge-frontend2
+# Challenge Frontend - Juntos Somos Mais
 
 ## Project setup
 ```

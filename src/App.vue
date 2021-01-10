@@ -2,7 +2,7 @@
   <div id="nav" class="container">
     <Header />
     <Breadcrumb />
-    <router-view class="mb-4" />
+    <router-view />
     <Footer />
   </div>
 </template>
