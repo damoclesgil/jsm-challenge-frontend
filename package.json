@@ -1,9 +1,10 @@
 {
-  "name": "jsm-challenge-frontend2",
+  "name": "jsm-challenge-frontend",
   "version": "0.1.0",
+  "author": "damoclesgil",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --port 9000",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
@@ -11,6 +12,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
+    "vue-composable": "^1.0.0-beta.14",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
@@ -54,8 +56,7 @@
     "overrides": [
       {
         "files": [
-          "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+          "**/*.spec.{j,t}s?(x)"
         ],
         "env": {
           "jest": true
@@ -71,8 +72,12 @@
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest/presets/typescript-and-babel",
     "transform": {
+      "^.+\\.js$": "babel-jest",
       "^.+\\.vue$": "vue-jest"
-    }
+    },
+    "testMatch": [
+      "**/*.spec.{j,t}s?(x)"
+    ]
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

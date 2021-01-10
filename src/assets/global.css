@@ -1,0 +1,164 @@
+:root{
+  --gray-200: #ededed;
+}
+body {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #616161;
+}
+/* Spacings */
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.p-8 {
+  padding: 2rem;
+}
+.ml-2 {
+  margin-left: 0.5rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mr-2 {
+  margin-right: 0.5rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mb-5 {
+  margin-bottom: 1.25rem;
+}
+.mb-8 {
+  margin-bottom: 2rem;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.mt-5 {
+  margin-top: 1.25rem;
+}
+.mt-8 {
+  margin-top: 2rem;
+}
+.w-14 {
+  width: 3rem;
+}
+.h-2 {
+  height: 0.5rem;
+}
+.rounded-default {
+  border-radius: 0.5rem;
+}
+/* Fonts Weight */
+
+.font-bold {
+  font-weight: bold;
+}
+.font-xs {
+  font-size: 0.8rem;
+}
+.font-sm {
+  font-size: 0.9rem;
+}
+.font-base {
+  font-size: 1rem;
+}
+.font-md {
+  font-size: 1.2rem;
+}
+
+/* Flex */
+.flex {
+  display: flex;
+}
+.items-center{
+  align-items: center;
+}
+.justify-center{
+  justify-items: center;
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+@media screen and (min-width: 768px) {
+  .md-flex { display: flex } 
+}
+@media screen and (min-width: 1023px) {
+  .lg-flex { display: flex }
+}
+/* 0: '0',
+1: '0.25rem',
+2: '0.5rem',
+'2_5': '0.6rem',
+3: '0.75rem',
+'3_5': '0.82rem',
+4: '1rem',
+5: '1.25rem',
+6: '1.5rem',
+7: '1.7rem',
+8: '2rem',
+9: '2.2rem',
+10: '2.5rem', */
+
+/* Colors */
+.bg-gray-100 {
+  background-color: #f4f4f4;
+}
+.bg-gray-200 {
+  background-color: var(--gray-200);
+}
+.text-gray-600 {
+  color: #979797;
+}
+.text-gray-700 { 
+  color: #616161;
+}
+.line-trought {
+  line-height: 1rem;
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.w-full {
+  width: 100%;
+}
+@media screen and (min-width: 768px) {
+.md-full{
+  width: 100%;
+  }
+}
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media screen and (min-width: 576px) {
+  .container { max-width: 540px } 
+}
+@media screen and (min-width: 768px) {
+  .container { 
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    max-width: 720px } 
+}
+@media screen and (min-width: 992px) {
+  .container { max-width: 960px }
+}
+@media screen and (min-width: 1200px) {
+  .container { max-width: 1140px }
+}
+@media screen and (min-width: 1400px) {
+  .container { max-width: 1320px }
+}
