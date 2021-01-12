@@ -1,6 +1,8 @@
 <template>
   <div class="footer flex items-center justify-center bg-gray-100">
-    <Logo size="normal" />
+    <router-link to="/">
+      <Logo size="normal" />
+    </router-link>
     <h2 class="font-bold font-base mb-4">Juntos Somos Mais Fidelização S.A.</h2>
     <p class="mb-4 font-sm">Siga-nos em em nossas redes sociais:</p>
     <div class="flex">

@@ -14,7 +14,13 @@
         v-for="(user, index) in filtredUsers"
         :key="index"
         class="bg-gray-200 p-8 rounded-default user"
-        :to="{ name: 'User', params: { id: index } }"
+        :to="{
+          name: 'User',
+          params: {
+            id: index,
+            ...user.name
+          }
+        }"
       >
         <div v-if="user.picture.large">
           <img
@@ -57,11 +63,12 @@
 
 <script lang="ts">
 import { usePagination } from "vue-composable";
-import { defineComponent, onBeforeMount, ref, computed, readonly } from "vue";
+import { defineComponent, ref, computed, readonly, onMounted } from "vue";
 import { search } from "@/store/Search.ts";
 import Checkbox from "@/components/Checkbox/Checkbox.vue";
 
 type filtersOption = "Especial" | "Normal" | "Trabalhoso";
+type usersArray = Array<object>;
 
 export default defineComponent({
   name: "Users",
@@ -117,14 +124,7 @@ export default defineComponent({
       maxlon: -2.196998,
       maxlat: -34.276938
     });
-    // eslint-disable-next-line
-    const rangeEspecial2 = readonly({
-      minlon: -20.0,
-      minlat: -52.997614,
-      maxlon: -19.766959,
-      maxlat: -44.428305
-    });
-    // eslint-disable-next-line
+
     const rangeNormal = readonly({
       minlon: -34.016466,
       minlat: -54.777426,
@@ -143,7 +143,7 @@ export default defineComponent({
           return (users.value = res.results);
         })
         .catch(error => {
-          console.log(error);
+          console.error(error);
         });
     };
 
@@ -154,30 +154,38 @@ export default defineComponent({
     });
 
     const filtredUsers = computed(() => {
-      // if (!Array.isArray(users.value)) return [];
-      let usersArray = [];
+      let usersArray: usersArray = [];
 
-      if (selectedFilter.value.length === 0) {
-        usersArray = users.value.filter(user => {
-          return (
-            user.name.first
-              .toLowerCase()
-              .includes(search.value.toLowerCase()) ||
-            user.name.last.toLowerCase().indexOf(search.value.toLowerCase()) >=
-              0
-          );
-        });
-      }
+      const searchedUsers = users.value.filter(user => {
+        return (
+          user.name.first.toLowerCase().includes(search.value.toLowerCase()) ||
+          user.name.last.toLowerCase().indexOf(search.value.toLowerCase()) >= 0
+        );
+      });
 
       if (selectedFilter.value.length) {
         if (selectedFilter.value.includes("Especial")) {
-          usersArray = users.value.filter(user => {
+          usersArray = searchedUsers.filter(user => {
             return (
               user.location.coordinates.latitude <= rangeEspecial.maxlat &&
               user.location.coordinates.latitude >= rangeEspecial.minlat
             );
           });
         }
+
+        if (selectedFilter.value.includes("Normal")) {
+          usersArray = searchedUsers.filter(user => {
+            return (
+              user.location.coordinates.latitude <= rangeNormal.maxlat &&
+              user.location.coordinates.latitude >= rangeNormal.minlat
+            );
+          });
+        }
+        if (selectedFilter.value.includes("Trabalhoso")) {
+          return (usersArray = searchedUsers);
+        }
+      } else {
+        return (usersArray = searchedUsers);
       }
 
       return usersArray.slice(offset.value, offset.value + pageSize.value);
@@ -187,7 +195,7 @@ export default defineComponent({
       selectedFilter.value = filterName;
     }
 
-    onBeforeMount(() => {
+    onMounted(() => {
       getData();
     });
 

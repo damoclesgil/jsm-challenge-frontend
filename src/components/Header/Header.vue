@@ -1,7 +1,9 @@
 <template>
   <div class="header w-full">
     <div class="container-logo">
-      <Logo size="normal" />
+      <router-link to="/">
+        <Logo size="normal" />
+      </router-link>
     </div>
     <Search />
   </div>
