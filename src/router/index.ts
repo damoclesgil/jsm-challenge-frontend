@@ -4,16 +4,13 @@ import Users from "../views/Users.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "Users",
+    name: "users",
     component: Users
   },
   {
     path: "/user/:id",
-    name: "User",
-    props: {
-      id: 1,
-      user: {}
-    },
+    name: "user",
+    props: true,
     component: () => import(/* webpackChunkName: "User" */ "../views/User.vue")
   }
 ];

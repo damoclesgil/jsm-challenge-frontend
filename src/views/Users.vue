@@ -10,17 +10,11 @@
       />
     </div>
     <div class="md-ml-2 bg-gray-100 grid-users md-full">
-      <router-link
+      <button
         v-for="(user, index) in filtredUsers"
         :key="index"
         class="bg-gray-200 p-8 rounded-default user"
-        :to="{
-          name: 'User',
-          params: {
-            id: index,
-            ...user.name
-          }
-        }"
+        @click="goToUser(user, Number(index))"
       >
         <div v-if="user.picture.large">
           <img
@@ -46,7 +40,7 @@
           {{ user.location.state }} - CEP:
           {{ user.location.postcode }}
         </p>
-      </router-link>
+      </button>
       <div v-if="filtredUsers.length === 0">Nenhum Usuário Encontrado</div>
     </div>
   </div>
@@ -65,7 +59,9 @@
 import { usePagination } from "vue-composable";
 import { defineComponent, ref, computed, readonly, onMounted } from "vue";
 import { search } from "@/store/Search.ts";
+import { setCurrentUser } from "@/store/User.ts";
 import Checkbox from "@/components/Checkbox/Checkbox.vue";
+import router from "@/router";
 
 type filtersOption = "Especial" | "Normal" | "Trabalhoso";
 type usersArray = Array<object>;
@@ -199,6 +195,11 @@ export default defineComponent({
       getData();
     });
 
+    function goToUser(user: object, index: number) {
+      setCurrentUser(user);
+      router.push({ name: "user", params: { id: index } });
+    }
+
     return {
       selectedFilter,
       next,
@@ -209,12 +210,12 @@ export default defineComponent({
       offset,
       search,
       onClickCheckbox,
-      rangeEspecial
+      goToUser
     };
   }
 });
 </script>
-<style>
+<style scoped>
 .grid-users {
   display: grid;
   grid-template-columns: auto;
@@ -224,12 +225,18 @@ export default defineComponent({
 .user {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
   align-items: center;
   text-decoration: none;
+  border: none;
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
-/* .filter-users {
-  max-height: 160px;
-} */
+.user:hover {
+  background-color: #d1d1d1;
+}
+
 .btn-pagination {
   border-radius: 0.5rem;
   padding: 0.98rem;

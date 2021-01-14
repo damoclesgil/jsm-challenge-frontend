@@ -77,6 +77,9 @@ body {
 .font-md {
   font-size: 1.2rem;
 }
+.font-lg {
+  font-size: 1.5rem;
+}
 
 /* Flex */
 .flex {
@@ -94,7 +97,7 @@ body {
 }
 @media screen and (min-width: 768px) {
   .md-flex { display: flex } 
-  .md-ml-2{  margin-left: 0.5rem; }
+  .md-ml-2 { margin-left: 0.5rem; }
 }
 @media screen and (min-width: 1023px) {
   .lg-flex { display: flex }
@@ -126,6 +129,9 @@ body {
 .text-gray-700 { 
   color: #616161;
 }
+.text-center{
+  text-align: center;
+}
 .line-trought {
   line-height: 1rem;
 }
@@ -144,6 +150,9 @@ body {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
+}
+.mx-500 {
+  max-width: 540px;
 }
 @media screen and (min-width: 576px) {
   .container { max-width: 540px } 
