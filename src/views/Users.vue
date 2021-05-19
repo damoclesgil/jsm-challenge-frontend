@@ -134,7 +134,7 @@ export default defineComponent({
       const originalUrl = "https://jsm-challenges.s3.amazonaws.com";
       // lcp --proxyUrl https://jsm-challenges.s3.amazonaws.com
       // https://www.npmjs.com/package/local-cors-proxy
-      const urlApi = `${originalUrl}/frontend-challenge`;
+      const urlApi = `${originalUrl}/frontend-challenge.json`;
       const config = {
         method: "get",
         headers: {
