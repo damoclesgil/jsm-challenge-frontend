@@ -129,13 +129,25 @@ export default defineComponent({
     });
 
     const getData = () => {
-      const urlApi = `https://jsm-challenges.s3.amazonaws.com/frontend-challenge.json`;
-      const config = { method: "get" };
+      // const proxyUrl = "http://localhost:8010/proxy";
+      // const proxyUrl = "http://localhost:3000";
+      const originalUrl = "https://jsm-challenges.s3.amazonaws.com";
+      // lcp --proxyUrl https://jsm-challenges.s3.amazonaws.com
+      // https://www.npmjs.com/package/local-cors-proxy
+      const urlApi = `${originalUrl}/frontend-challenge`;
+      const config = {
+        method: "get",
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        }
+      };
       fetch(urlApi, config)
         .then(response => {
+          // return console.log(response.json());
           return response.json();
         })
         .then(res => {
+          // return console.log(res);
           return (users.value = res.results);
         })
         .catch(error => {
